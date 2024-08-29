@@ -1,18 +1,20 @@
-import express from "express"; //gọi Express
-import homeController from "../controllers/homeController"; //gọi controller
+import express from "express";
+import homeController from "../controllers/homeController";
 
-let router = express.Router();  //khởi tạo Route
+let router = express.Router();  
 
 let initWebRoutes = (app) => {
-    //cách 1:
-    router.get('/', (req,res) => {
-        return res.send('Nguyễn Hữu Trung');
-    });
-    //cách 2: gọi hàm trong controller
-    router.get('/home', homeController.getHomePage); //url cho trang chủ
-    router.get('/about', homeController.getAboutPage); //url cho trang about
 
-    return app.use("/", router); //url mặc định
+    router.get('/home', homeController.getHomePage); 
+    router.get('/about', homeController.getAboutPage); 
+    router.get('/crud', homeController.getCRUD); 
+    router.post('/create-crud', homeController.createCRUD)
+    router.get('/read-crud', homeController.readCRUD)
+    router.get('/edit-crud', homeController.editCRUD)
+    router.post('/put-crud', homeController.putCRUD)
+    router.get('/delete-crud', homeController.deleteCRUD)
+
+    return app.use("/", router);
 }
 
 module.exports = initWebRoutes;
